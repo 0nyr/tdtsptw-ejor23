@@ -1,4 +1,4 @@
-COMPILER = g++-10
+COMPILER = g++ # original value g++-10
 FLAGS = -O3 -std=c++17 -Wall -Wfatal-errors -fopenmp
 
 CPP := main.cpp model.cpp solving_algorithms.cpp tw_preprocessor.cpp local_search.cpp
