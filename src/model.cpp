@@ -118,22 +118,33 @@ void TDTSPTW::dump() {
     cout << endl;
 
     cout << "R matrix : " << endl;
+    std::cout << "[" << std::endl;
     for (uint i = 0; i < N; i++) {
+        std::cout << "    [";
         for (uint j = 0; j < N; j++) {
-            cout << (R[i].contains(j) ? '1' : '_') << " ";
+            cout << (R[i].contains(j) ? '1' : '0');
+            if (j < N-1) {
+                std::cout << ", ";
+            }
         }
-        cout << endl;
+        std::cout << "]," << std::endl;
     }
+    std::cout << "]" << std::endl;
     cout << endl;
 
-    cout << "E matrix : " << endl;
+    cout << "E_ matrix : " << endl;
+    std::cout << "[" << std::endl;
     for (uint i = 0; i < N; i++) {
+        std::cout << "    [";
         for (uint j = 0; j < N; j++) {
-            cout << (E[i].contains(j) ? '1' : '_') << " ";
+            cout << (E_[i].contains(j) ? '1' : '0');
+            if (j < N-1) {
+                std::cout << ", ";
+            }
         }
-        cout << endl;
+        std::cout << "]," << std::endl;
     }
-    cout << endl;
+    std::cout << "]" << std::endl;
 }
 
 uint TDTSPTW::cost(const uint &i, const uint &j, const uint &t) const {
