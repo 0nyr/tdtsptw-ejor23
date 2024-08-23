@@ -5,23 +5,28 @@
 
 using namespace std;
 
-TWPreprocessor::TWPreprocessor(TDTSPTW *tsp, const bool &triangle_inequality_assumed,
-                               const bool &propagate_precedence_only,
-                               const vector<pair<uint, uint>> &precedence_constraints)
-        : tsp(tsp),
-          N(tsp->N),
-          E(tsp->E),
-          E_(tsp->E_),
-          R(tsp->R),
-          R_(tsp->R_),
-          e(N, 0),
-          l(N, 0),
-          s(N, 0),
-          start(tsp->start),
-          end(tsp->end),
-          triangle_inequality_assumed(triangle_inequality_assumed),
-          infeasible_triples_mem(N * N),
-          propagate_precedence_only(propagate_precedence_only) {
+TWPreprocessor::TWPreprocessor(
+    TDTSPTW *tsp, 
+    const bool &triangle_inequality_assumed,
+    const bool &propagate_precedence_only,
+    const vector<pair<uint, uint>> &precedence_constraints
+): 
+    tsp(tsp),
+    N(tsp->N),
+    E(tsp->E),
+    E_(tsp->E_),
+    R(tsp->R),
+    R_(tsp->R_),
+    I(tsp->I),
+    e(N, 0),
+    l(N, 0),
+    s(N, 0),
+    start(tsp->start),
+    end(tsp->end),
+    triangle_inequality_assumed(triangle_inequality_assumed),
+    infeasible_triples_mem(N * N),
+    propagate_precedence_only(propagate_precedence_only) 
+{
     for (uint i = 0; i < N; i++) {
         e[i] = tsp->tws[i].early;
         l[i] = tsp->tws[i].late;
@@ -84,8 +89,34 @@ bool TWPreprocessor::preprocess() {
 
         changes = transitiveClosurePrecedence() || changes;
         changes = removeArcsFromPrecedencePairs() || changes;
+
+        incompatible_pairs();
     }
     return false; // instance may be feasible
+}
+
+/*
+Determine incompatible pairs of node: nodes that
+cannot be put together in the same partition.
+O(n.log(n))
+*/
+void TWPreprocessor::incompatible_pairs() {
+    printf("=== RUNNING TWPreprocessor::incompatible_pairs() ===");
+    for (uint i = 0; i < N - 1; i++) {
+        for (uint j = i + 1; j < N; j++) {
+            if (
+                (delta(i, j, e[i]) > l[j]) &&
+                (delta(j, i, e[j]) > l[i])
+            ) {
+                printf(" - a_%d%d = %d > l_%d = %d", i, j, delta(i, j, e[i]), j, l[j]);
+                printf(" - a_%d%d = %d > l_%d = %d", j, i, delta(j, i, e[j]), i, l[i]);
+                if (!I[i][j]) {
+                    I[i].add(j);
+                    I[j].add(i);
+                }
+            }
+        }
+    }
 }
 
 /*

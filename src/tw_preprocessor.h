@@ -19,6 +19,7 @@ class TWPreprocessor {
     vector<Bitset> &E_;
     vector<Bitset> &R;
     vector<Bitset> &R_;
+    vector<Bitset> &I;
     vector<uint> e;
     vector<uint> l;
     vector<uint> s;
@@ -58,6 +59,8 @@ public:
     void print_stats() const;
 
 private:
+    void incompatible_pairs();
+
     bool TW_R1(bool &changes);
 
     bool TW_R2(bool &changes);

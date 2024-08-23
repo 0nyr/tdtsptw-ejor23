@@ -69,9 +69,9 @@ public:
     vector<uint> service_times;
     vector<Bitset> E; // Usable arcs : arc (i,j) may be used if E[i][j]
     vector<Bitset> E_; // Transposed
-    vector<Bitset> R; // Precedence constraints : node i must precede j iff R[i][j]
+    vector<Bitset> R; // Precedence constraints : node i must precede j if R[i][j]
     vector<Bitset> R_; // Transposed
-
+    vector<Bitset> I; // Incompatibility constraints : node i and j cannot be in same partition
     const Bitset N_bs;
     const Bitset N_0;
     TWPreprocessor *p;
