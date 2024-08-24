@@ -98,21 +98,29 @@ bool TWPreprocessor::preprocess() {
 /*
 Determine incompatible pairs of node: nodes that
 cannot be put together in the same partition.
-O(n.log(n))
+There are n(n-1)/2 pairs to check => O(n^2) pairs to check
+NB: Handles triangle inequality assumed or not.
 */
 void TWPreprocessor::incompatible_pairs() {
-    printf("=== RUNNING TWPreprocessor::incompatible_pairs() ===");
+    if (triangle_inequality_assumed) {
+        printf("TRIANGLE INEQUALITY assumed");
+    } else {
+        printf("TRIANGLE INEQUALITY is NOT assumed");
+    }
     for (uint i = 0; i < N - 1; i++) {
         for (uint j = i + 1; j < N; j++) {
             if (
-                (delta(i, j, e[i]) > l[j]) &&
-                (delta(j, i, e[j]) > l[i])
+                (infeasible_direct(i, j)) &&
+                (infeasible_direct(j, i))
             ) {
-                printf(" - a_%d%d = %d > l_%d = %d", i, j, delta(i, j, e[i]), j, l[j]);
-                printf(" - a_%d%d = %d > l_%d = %d", j, i, delta(j, i, e[j]), i, l[i]);
-                if (!I[i][j]) {
-                    I[i].add(j);
-                    I[j].add(i);
+                if (triangle_inequality_assumed || (
+                    (infeasible_indirect(i, j)) &&
+                    (infeasible_indirect(j, i))
+                )) {
+                    if (!I[i][j]) {
+                        I[i].add(j);
+                        I[j].add(i);
+                    }
                 }
             }
         }
