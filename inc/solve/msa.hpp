@@ -1,11 +1,14 @@
 #ifndef TDTSPTW_MSA_HPP
 #define TDTSPTW_MSA_HPP
 
+#include "utils/util.hpp"
+#include "libs/static_array.hpp"
+#include "libs/bitsets.hpp"
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
-#include "util.hpp"
 #include <cstring> // memcpy
 
 using namespace std;

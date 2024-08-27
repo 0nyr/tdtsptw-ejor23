@@ -1,3 +1,9 @@
+# cpp compilation files
+obj/
+bin/
+*.o
+
+# Benchmarks
 benchmarks/*
 !benchmarks/makefile
-tdtsptw*
+!benchmarks/manual_benchmarks

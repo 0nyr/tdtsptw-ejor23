@@ -1,11 +1,13 @@
-#include "cost_models.h"
-#include "model.h"
+#include "params/arg_parser.hpp"
+#include "libs/unordered_dense.hpp"
+#include "data/cost_models.hpp"
+#include "data/model.hpp"
+#include "solve/solving_algorithms.hpp"
+
 #include <chrono>
 #include <queue>
 #include "omp.h"
-#include "arg_parser.hpp"
-#include "unordered_dense.h"
-#include "solving_algorithms.h"
+
 
 void interactive(TDTSPTW &t, const bool &preprocess_tws) {
     if (t.process_tws_and_compute_lbs(preprocess_tws, true)) // DO compute cost LBs

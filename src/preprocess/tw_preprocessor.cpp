@@ -1,5 +1,6 @@
-#include "tw_preprocessor.h"
-#include "model.h"
+#include "preprocess/tw_preprocessor.hpp"
+#include "data/model.hpp"
+
 #include <algorithm>
 #include <cassert>
 
@@ -18,6 +19,7 @@ TWPreprocessor::TWPreprocessor(
     R(tsp->R),
     R_(tsp->R_),
     I(tsp->I),
+    I_fromE(tsp->I_fromE),
     e(N, 0),
     l(N, 0),
     s(N, 0),
@@ -109,6 +111,7 @@ void TWPreprocessor::incompatible_pairs() {
     }
     for (uint i = 0; i < N - 1; i++) {
         for (uint j = i + 1; j < N; j++) {
+            // Incompatible pairs from TWs
             if (
                 (infeasible_direct(i, j)) &&
                 (infeasible_direct(j, i))
@@ -125,6 +128,35 @@ void TWPreprocessor::incompatible_pairs() {
             }
         }
     }
+}
+
+void TWPreprocessor::incompatible_pairs_from_E() {
+    // TODO: complete this function, and compare its results from E
+    
+    // def find_connected_components(matrix):
+    // finding connected components using DFS
+    // n = len(matrix)
+    // visited = set()
+    // components = []
+    
+    // for i in range(n):
+    //     if i not in visited:
+    //         component = []
+    //         stack = [i]
+    //         while stack:
+    //             node = stack.pop()
+    //             if node not in visited:
+    //                 visited.add(node)
+    //                 component.append(node)
+    //                 # Consider all nodes that are connected and not yet visited
+    //                 for next_node, is_connected in enumerate(matrix[node]):
+    //                     if is_connected and next_node not in visited:
+    //                         stack.append(next_node)
+    //         components.append(component)
+    
+    // TODO: from connected components to incompatible pairs
+
+    // return components
 }
 
 /*

@@ -1,10 +1,11 @@
 #ifndef TDTSPTW_INSTANCES_H
 #define TDTSPTW_INSTANCES_H
 
+#include "params/constants.hpp"
+
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include "constants.h"
 
 using namespace std;
 

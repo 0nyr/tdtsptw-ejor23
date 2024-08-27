@@ -1,5 +1,4 @@
-#include "local_search.h"
-
+#include "solve/local_search.hpp"
 
 uint LocalSearch::search(const static_array<uint, MAX_SIZE> &base_solution, static_array<uint, MAX_SIZE> &path,
                          const uint &cost, const real_time_point &tp) {

@@ -1,10 +1,11 @@
+#include "data/cost_models.hpp"
+#include "data/model.hpp"
+#include "solve/msa.hpp"
+#include "preprocess/tw_preprocessor.hpp"
+
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include "cost_models.h"
-#include "model.h"
-#include "msa.hpp"
-#include "tw_preprocessor.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ TDTSPTW::TDTSPTW(CostModel *cm, const uint &N_, const vector<TimeWindow> &tws, c
         R(N, Bitset()), // init full of 0s (empty)
         R_(N, Bitset()),
         I(N, Bitset()),
+        I_fromE(N, Bitset()),
         N_bs(Bitset::full_set(N)),
         N_0(Bitset(N_bs).remove(end)) {
     for (uint i = 0; i < N_; i++) {

@@ -1,12 +1,17 @@
 #ifndef TDTSPTW_SOLVING_ALGORITHMS_H
 #define TDTSPTW_SOLVING_ALGORITHMS_H
 
-#include "constants.h"
-#include "util.hpp"
-#include "unordered_dense.h"
-#include "model.h"
+#include "params/constants.hpp"
+#include "utils/util.hpp"
+#include "libs/unordered_dense.hpp"
+#include "data/model.hpp"
+
 #include <tuple>
 #include <optional>
+#include <iostream>
+#include <iomanip> // setw()
+
+using namespace std;
 
 template<typename T>
 void anytime_log(const string &prefix, const bool &found_solution, const uint &best,

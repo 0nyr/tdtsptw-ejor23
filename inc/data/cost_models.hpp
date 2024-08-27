@@ -1,14 +1,15 @@
 #ifndef TDTSPTW_COST_MODELS_H
 #define TDTSPTW_COST_MODELS_H
 
+#include "params/constants.hpp"
+#include "data/instances.hpp"
+#include "libs/bitsets.hpp"
+#include "libs/static_array.hpp"
+#include "utils/util.hpp"
+
 #include <vector>
 #include <cassert>
 #include <algorithm>
-#include "constants.h"
-#include "instances.h"
-#include "bitsets.hpp"
-#include "static_array.hpp"
-#include "util.hpp"
 
 class CostModel;
 

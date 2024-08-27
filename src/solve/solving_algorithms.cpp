@@ -1,12 +1,12 @@
+#include "solve/solving_algorithms.hpp"
+#include "solve/local_search.hpp"
+#include "solve/scc.hpp"
+
 #include <iomanip>
 #include <set>
 #include <map>
 #include <unistd.h> // for getpid()
 #include <thread>
-
-#include "solving_algorithms.h"
-#include "local_search.h"
-#include "scc.hpp"
 
 using namespace std;
 

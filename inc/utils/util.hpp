@@ -1,6 +1,9 @@
 #ifndef TDTSPTW_UTIL_HPP
 #define TDTSPTW_UTIL_HPP
 
+#include "params/constants.hpp"
+#include "libs/unordered_dense.hpp"
+
 #include <queue>
 #include <fstream>
 #include <unistd.h> // hostname
@@ -10,8 +13,6 @@
 #include <queue>
 #include <unordered_map>
 #include <chrono>
-#include "constants.h"
-#include "unordered_dense.h"
 
 using namespace std::string_literals;
 

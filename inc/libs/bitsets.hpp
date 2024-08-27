@@ -1,6 +1,8 @@
 #ifndef TDTSPTW_BITSETS_HPP
 #define TDTSPTW_BITSETS_HPP
 
+#include "params/constants.hpp"
+
 #include <vector>
 #include <iostream>
 #include <random>
@@ -8,7 +10,6 @@
 #include <bitset>
 #include <unordered_map>
 #include <climits>
-#include "constants.h"
 
 using namespace std;
 

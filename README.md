@@ -5,9 +5,9 @@
 
 ## Run
 
-+ Example 1: Solve Rifki20 with 21 nodes, service time to 0, time steps of 6 minutes (small) -> `./tdtsptw solve ACS pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/Rif20/TW_Ari18/n21_l6_sigma100/beta_50/tt01_tw04.tw benchmarks/Rif20/s/21_0`
++ Example 1: Solve Rifki20 with 21 nodes, service time to 0, time steps of 6 minutes (small) -> `./bin/tdtsptw solve ACS pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/Rif20/TW_Ari18/n21_l6_sigma100/beta_50/tt01_tw04.tw benchmarks/Rif20/s/21_0`
 
-+ Example 2: Perform preprocessing: `./tdtsptw preprocess pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/Rif20/TW_Ari18/n21_l6_sigma100/beta_50/tt01_tw04.tw benchmarks/Rif20/s/21_0`
++ Example 2: Perform preprocessing: `./bin/tdtsptw preprocess pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/manual_benchmarks/TWs/timewindow_21_2.txt benchmarks/Rif20/s/21_0`
 
 ### Note
 

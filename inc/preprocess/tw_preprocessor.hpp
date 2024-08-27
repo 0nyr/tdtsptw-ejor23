@@ -1,12 +1,13 @@
 #ifndef TDTSPTW_TW_PREPROCESSOR_H
 #define TDTSPTW_TW_PREPROCESSOR_H
 
+#include "libs/bitsets.hpp"
+#include "utils/util.hpp"
+#include "params/constants.hpp"
+#include "libs/static_array.hpp"
+
 #include <vector>
 #include <iostream>
-#include "bitsets.hpp"
-#include "util.hpp"
-#include "constants.h"
-#include "static_array.hpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class TWPreprocessor {
     vector<Bitset> &R;
     vector<Bitset> &R_;
     vector<Bitset> &I;
+    vector<Bitset> &I_fromE;
     vector<uint> e;
     vector<uint> l;
     vector<uint> s;
@@ -60,6 +62,7 @@ public:
 
 private:
     void incompatible_pairs();
+    void incompatible_pairs_from_E();
 
     bool TW_R1(bool &changes);
 

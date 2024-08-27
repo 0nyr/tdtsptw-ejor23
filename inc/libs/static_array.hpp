@@ -1,10 +1,11 @@
 #ifndef TDTSPTW_STATIC_ARRAY_HPP
 #define TDTSPTW_STATIC_ARRAY_HPP
 
+#include "params/constants.hpp"
+
 #include <array>
 #include <vector>
 #include <iostream>
-#include "constants.h"
 
 template<typename T, size_t N>
 class static_array {

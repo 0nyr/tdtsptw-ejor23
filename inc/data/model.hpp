@@ -1,15 +1,17 @@
 #ifndef TDTSPTW_MODEL_H
 #define TDTSPTW_MODEL_H
 
+#include "solve/msa.hpp"
+#include "utils/util.hpp"
+#include "data/cost_models.hpp"
+#include "params/constants.hpp"
+#include "libs/bitsets.hpp"
+
 #include <string>
 #include <vector>
 #include <sstream>
-#include "cost_models.h"
-#include "constants.h"
-#include "bitsets.hpp"
 #include "omp.h"
-#include "msa.hpp"
-#include "util.hpp"
+
 
 using namespace std;
 
@@ -72,6 +74,7 @@ public:
     vector<Bitset> R; // Precedence constraints : node i must precede j if R[i][j]
     vector<Bitset> R_; // Transposed
     vector<Bitset> I; // Incompatibility constraints : node i and j cannot be in same partition
+    vector<Bitset> I_fromE; // Incompatibility constraints obtained from E
     const Bitset N_bs;
     const Bitset N_0;
     TWPreprocessor *p;

@@ -1,8 +1,9 @@
 #ifndef TDTSPTW_LOCAL_SEARCH_H
 #define TDTSPTW_LOCAL_SEARCH_H
 
+#include "data/model.hpp"
+
 #include <chrono>
-#include "model.h"
 
 class LocalSearch {
     const TDTSPTW &tsp;
