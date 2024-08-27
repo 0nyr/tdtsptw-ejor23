@@ -2,6 +2,7 @@
 #include "data/model.hpp"
 #include "solve/msa.hpp"
 #include "preprocess/tw_preprocessor.hpp"
+#include "utils/print_utils.hpp"
 
 #include <vector>
 #include <iostream>
@@ -24,7 +25,6 @@ TDTSPTW::TDTSPTW(CostModel *cm, const uint &N_, const vector<TimeWindow> &tws, c
         R(N, Bitset()), // init full of 0s (empty)
         R_(N, Bitset()),
         I(N, Bitset()),
-        I_fromE(N, Bitset()),
         N_bs(Bitset::full_set(N)),
         N_0(Bitset(N_bs).remove(end)) {
     for (uint i = 0; i < N_; i++) {
@@ -120,68 +120,17 @@ void TDTSPTW::dump() {
              << (i == end ? "(end)" : "") << endl;
     cout << endl;
 
-    cout << "R matrix : " << endl;
-    std::cout << "[" << std::endl;
-    for (uint i = 0; i < N; i++) {
-        std::cout << "    [";
-        for (uint j = 0; j < N; j++) {
-            cout << (R[i].contains(j) ? '1' : '0');
-            if (j < N-1) {
-                std::cout << ", ";
-            }
-        }
-        std::cout << "]," << std::endl;
-    }
-    std::cout << "]" << std::endl;
-    cout << endl;
+    cout << "R = ";
+    print_bitset_square_matrix(R, N);
 
-    cout << "E matrix : " << endl;
-    std::cout << "[" << std::endl;
-    for (uint i = 0; i < N; i++) {
-        std::cout << "    [";
-        for (uint j = 0; j < N; j++) {
-            cout << (E[i].contains(j) ? '1' : '0');
-            if (j < N-1) {
-                std::cout << ", ";
-            }
-        }
-        std::cout << "]," << std::endl;
-    }
-    std::cout << "]" << std::endl;
+    cout << "E = ";
+    print_bitset_square_matrix(E, N);
 
-    cout << "I matrix : " << endl;
-    std::cout << "[" << std::endl;
-    for (uint i = 0; i < N; i++) {
-        std::cout << "    [";
-        for (uint j = 0; j < N; j++) {
-            cout << (I[i].contains(j) ? '1' : '0');
-            if (j < N-1) {
-                std::cout << ", ";
-            }
-        }
-        std::cout << "]," << std::endl;
-    }
-    std::cout << "]" << std::endl;
+    cout << "I = ";
+    print_bitset_square_matrix(I, N);
 
-    /* print I as a list of lists */
-    cout << "I = [" << endl;
-    bool has_values = false;
-    for (uint i = 0; i < N - 1; i++) {
-        for (uint j = i + 1; j < N; j++) {
-            if (I[i].contains(j)) {
-                if (!has_values) {
-                    cout << "    ";
-                    has_values = true;
-                }
-                cout << "[" << i+1 << ", " << j+1 << "], ";
-            }
-        }
-        if (has_values) {
-            cout << endl;
-            has_values = false;
-        }
-    }
-    cout << "]" << endl;
+    cout << "I = " << endl;
+    print_bitset_square_matrix_as_list_of_lists(I, N);
 }
 
 uint TDTSPTW::cost(const uint &i, const uint &j, const uint &t) const {

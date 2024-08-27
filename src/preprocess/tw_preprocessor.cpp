@@ -19,7 +19,6 @@ TWPreprocessor::TWPreprocessor(
     R(tsp->R),
     R_(tsp->R_),
     I(tsp->I),
-    I_fromE(tsp->I_fromE),
     e(N, 0),
     l(N, 0),
     s(N, 0),
@@ -62,6 +61,8 @@ TWPreprocessor::TWPreprocessor(
  * Returns true if the instance is infeasible
  */
 bool TWPreprocessor::preprocess() {
+    bool tsp_instance_is_infeasible = false;
+
     if (propagate_precedence_only) {
         bool changes = true;
         for (it = 0; changes; it++) {
@@ -71,6 +72,7 @@ bool TWPreprocessor::preprocess() {
         }
         return false;
     }
+    
     bool changes = true;
     for (it = 0; changes; it++) {
         changes = false;
@@ -81,7 +83,7 @@ bool TWPreprocessor::preprocess() {
                 TW_R2(tw_changes) ||
                 TW_R3(tw_changes) ||
                 TW_R4((tw_changes))) {
-                return true; // instance is infeasible
+                tsp_instance_is_infeasible = true; // instance is infeasible
             }
             changes = tw_changes || changes;
         } while (tw_changes);
@@ -91,10 +93,11 @@ bool TWPreprocessor::preprocess() {
 
         changes = transitiveClosurePrecedence() || changes;
         changes = removeArcsFromPrecedencePairs() || changes;
-
-        incompatible_pairs();
     }
-    return false; // instance may be feasible
+
+    incompatible_pairs();
+
+    return tsp_instance_is_infeasible;
 }
 
 /*
@@ -128,35 +131,6 @@ void TWPreprocessor::incompatible_pairs() {
             }
         }
     }
-}
-
-void TWPreprocessor::incompatible_pairs_from_E() {
-    // TODO: complete this function, and compare its results from E
-    
-    // def find_connected_components(matrix):
-    // finding connected components using DFS
-    // n = len(matrix)
-    // visited = set()
-    // components = []
-    
-    // for i in range(n):
-    //     if i not in visited:
-    //         component = []
-    //         stack = [i]
-    //         while stack:
-    //             node = stack.pop()
-    //             if node not in visited:
-    //                 visited.add(node)
-    //                 component.append(node)
-    //                 # Consider all nodes that are connected and not yet visited
-    //                 for next_node, is_connected in enumerate(matrix[node]):
-    //                     if is_connected and next_node not in visited:
-    //                         stack.append(next_node)
-    //         components.append(component)
-    
-    // TODO: from connected components to incompatible pairs
-
-    // return components
 }
 
 /*

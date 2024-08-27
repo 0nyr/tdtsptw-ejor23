@@ -1,7 +1,7 @@
 #ifndef TDTSPTW_MSA_HPP
 #define TDTSPTW_MSA_HPP
 
-#include "utils/util.hpp"
+#include "utils/utils.hpp"
 #include "libs/static_array.hpp"
 #include "libs/bitsets.hpp"
 

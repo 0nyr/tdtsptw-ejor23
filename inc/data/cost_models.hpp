@@ -5,7 +5,7 @@
 #include "data/instances.hpp"
 #include "libs/bitsets.hpp"
 #include "libs/static_array.hpp"
-#include "utils/util.hpp"
+#include "utils/utils.hpp"
 
 #include <vector>
 #include <cassert>

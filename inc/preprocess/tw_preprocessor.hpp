@@ -2,7 +2,7 @@
 #define TDTSPTW_TW_PREPROCESSOR_H
 
 #include "libs/bitsets.hpp"
-#include "utils/util.hpp"
+#include "utils/utils.hpp"
 #include "params/constants.hpp"
 #include "libs/static_array.hpp"
 
@@ -21,7 +21,6 @@ class TWPreprocessor {
     vector<Bitset> &R;
     vector<Bitset> &R_;
     vector<Bitset> &I;
-    vector<Bitset> &I_fromE;
     vector<uint> e;
     vector<uint> l;
     vector<uint> s;
