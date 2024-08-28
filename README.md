@@ -9,6 +9,12 @@
 
 + Example 2: Perform preprocessing: `./bin/tdtsptw preprocess pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/manual_benchmarks/TWs/timewindow_21_2.txt benchmarks/Rif20/s/21_0`
 
++ Example 3: partition: `./bin/tdtsptw partition pw_constant 11 ./benchmarks/Rif20/sigma=100/n=11/cost_100_6_11_1.txt benchmarks/manual_benchmarks/TWs/timewindow_11_2.txt benchmarks/Rif20/s/11_0 -q=3`
+
+`./bin/tdtsptw preprocess pw_constant 11 ./benchmarks/Rif20/sigma=100/n=11/cost_100_6_11_1.txt benchmarks/manual_benchmarks/TWs/timewindow_11_2.txt benchmarks/Rif20/s/11_0`
+
+`./bin/tdtsptw partition pw_constant 21 ./benchmarks/Rif20/sigma=100/n=21/cost_100_6_21_1.txt benchmarks/manual_benchmarks/TWs/timewindow_21_2.txt benchmarks/Rif20/s/21_0 -q=3`
+
 ### Note
 
 ##### Addition of a final node

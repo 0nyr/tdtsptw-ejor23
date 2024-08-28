@@ -7,6 +7,7 @@
 #include <chrono>
 #include <queue>
 #include "omp.h"
+#include <solve/partitioner.hpp>
 
 
 void interactive(TDTSPTW &t, const bool &preprocess_tws) {
@@ -182,7 +183,7 @@ int main(int argc, char *argv[]) {
     info << "preprocess-tws=" << preprocess_tws;
     info << ", mem-limit-gb=" << mem_limit_gb;
 
-    const auto &subcommand(a.getPositional<string>("subcommand", {"solve", "preprocess"}));
+    const auto &subcommand(a.getPositional<string>("subcommand", {"solve", "preprocess", "partition"}));
 
     info << ", subcommand=" << subcommand;
     string algorithm;
@@ -259,6 +260,17 @@ int main(int argc, char *argv[]) {
         a.done();
         t->process_tws_and_compute_lbs(preprocess_tws, false); // DO NOT compute cost LBs
         t->dump();
+    } else if (subcommand == "partition") {
+        // capacity argument
+        //const uint q(a.getArgument<uint>("-q", t->N, false, [](const uint &x) { return x > 0; }, "q must be strictly positive"));
+        const uint q(a.getArgument("-tl", t->N));
+        info << ", q=" << q;
+
+        a.done();
+        t->process_tws_and_compute_lbs(preprocess_tws, false); // DO NOT compute cost LBs
+        t->dump();
+        Partitioner partitioner(t->N, q, t->I);
+        partitioner.partition();
     }
     delete t;
     return 0;
